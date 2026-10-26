@@ -218,7 +218,6 @@ export function Footer() {
           </motion.div>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="text-white/40 font-mono text-xs">© 2026 Transformers Hub. All rights reserved.</p>
             <p className="text-white/50 font-mono text-xs">
               Made by <span className="text-white">Aryan</span>
             </p>
