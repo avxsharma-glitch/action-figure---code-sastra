@@ -15,7 +15,7 @@ export function LifestyleSection() {
           className="order-2 lg:order-1"
         >
           <span className="font-mono text-xs tracking-[0.3em] text-[#6d28d9]">CHARACTER SPOTLIGHT</span>
-          <h2 className="mt-3 text-4xl font-black tracking-tighter text-[#121212] md:text-6xl">BUMBLEBEE</h2>
+          <h2 className="mt-3 text-4xl font-black tracking-tighter text-[#121212] md:text-6xl">MEGATRON</h2>
           <p className="mt-4 max-w-lg font-mono text-sm leading-relaxed text-[#121212]/65">
             A commanding Decepticon presence with gunmetal armor, a signature fusion cannon, and unmistakable purple
             insignia. Built to be the centrepiece of any serious collection.
@@ -50,7 +50,7 @@ export function LifestyleSection() {
               src="/images/megatron.png"
               alt="Megatron action figure"
               fill
-              className="object-contain drop-shadow-2xl lg:object-cover"
+              className="object-contain drop-shadow-2xl"
             />
           </div>
         </motion.div>
