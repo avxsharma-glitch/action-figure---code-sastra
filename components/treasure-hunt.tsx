@@ -72,6 +72,11 @@ export function TreasureHunt() {
     if (normalizedAnswer === 'github' || normalizedAnswer === 'git') {
       setChallengeStatus('success')
       setFeedback('Correct! You found the hidden treasure.')
+      setIsOpen(false)
+      document.getElementById('contact')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
       return
     }
 
