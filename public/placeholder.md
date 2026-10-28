@@ -2,10 +2,10 @@
 
 ## Summary
 
-- Confirmed pre-existing issues: 4
+- Confirmed pre-existing issues: 5
 - Potential pre-existing issues: 2
-- Intentional challenge bugs: 15
-- Total documented issues: 21
+- Intentional challenge bugs: 22 active; 2 resolved
+- Total documented issues: 29 active; 2 resolved
 
 ## Intentional Challenge Bugs
 
@@ -126,6 +126,14 @@ These defects were deliberately introduced for the controlled bug-hunting challe
 - Actual: The hover state remains active.
 - Recommended fix: Clear `isHovered` on pointer exit.
 
+### INT-024 | Carousel Previous button declares duplicate click handlers | Medium
+- Affected file and line: `components/flavor-carousel.tsx:225-226`
+- Evidence: The same JSX button declares both `onClick={() => {}}` and `onClick={prevFlavor}`.
+- Reproduction: Run `pnpm exec tsc --noEmit`.
+- Expected: The project passes TypeScript validation without duplicate JSX attributes.
+- Actual: TypeScript reports `TS17001: JSX elements cannot have multiple attributes with the same name`.
+- Recommended fix: Remove the empty handler and keep the `prevFlavor` handler.
+
 ## Pre-existing Confirmed Issues
 
 ### BUG-001 | Broken lint script | Medium
@@ -160,11 +168,20 @@ These defects were deliberately introduced for the controlled bug-hunting challe
 - Evidence: The section uses `id="spotlight"` but no primary navigation item targets it.
 - Verification needed: Confirm whether this is intentional content prioritization or an omitted link.
 
+### BUG-007 | Terms footer link points to Contact instead of terms content | Low
+- Affected file and line: `components/footer.tsx:170`
+- Evidence: The retained `Terms` link uses `href="#contact"`, the same destination as Contact, and no terms content or route exists.
+- Reproduction: Click `Terms` in the footer.
+- Expected: Open or reveal the site's terms and conditions.
+- Actual: Scrolls to the Contact footer section.
+- Recommended fix: Add terms content and point the link to it, or remove the link.
+
 ## Checks Performed
 
 - `npm run build` — Passed after the intentional changes; `/` and `/_not-found` were generated successfully.
 - `npm run lint` — Failed because `eslint` is not recognized in the project environment.
 - `npm run dev` — The prior server session stopped before verification; a fresh server start is required for runtime checks.
+- `pnpm exec tsc --noEmit` — Failed with `TS17001` for the duplicate `onClick` attribute in `components/flavor-carousel.tsx:226`.
 - Static source review — Completed for application entry points, page sections, shared interaction components, configuration, styles, assets, and the private intentional-bug answer key.
 
 ## Manual Verification Required
@@ -175,7 +192,7 @@ These defects were deliberately introduced for the controlled bug-hunting challe
 
 ## Final Intentional Bug Inventory and Reproduction Guide
 
-The current application contains **21 active intentional bugs**: the original 15 plus 6 additional defects. Two footer-link issues were resolved by removing the dead links. The entries below are the final challenge inventory and describe how to find each one.
+The current application contains **22 active intentional bugs**: the original 15 plus 7 additional defects. Two footer-link issues were resolved by removing the dead links. The entries below are the final challenge inventory and describe how to find each one.
 
 | ID | Location | Bug | How to find it |
 |---|---|---|---|
@@ -195,13 +212,14 @@ The current application contains **21 active intentional bugs**: the original 15
 | INT-014 | `components/navigation.tsx:143` | Mobile menu accessible label is inverted. | Use a screen reader or inspect the accessible name: the closed control says `Close menu`, and the open control says `Open menu`. |
 | INT-015 | `components/bento-grid.tsx:66-69` | Feature-card hover state does not reset. | Hover a collection card, move the pointer away, and observe that hover shine behavior remains active. |
 | INT-016 | `components/footer.tsx` | Resolved: the dead About footer link was removed. | Confirm that only Contact and Terms remain in the footer link groups. |
-| INT-017 | `components/lifestyle-section.tsx` | Character spotlight CTA goes to an unrelated section. | Click **Discover Character** in the spotlight; it targets Collections rather than the related Figures section. |
+| INT-017 | `components/lifestyle-section.tsx` | Character spotlight CTA is a no-op. | Click **Discover Character** in the spotlight; its click handler prevents the link navigation, so no section opens. |
 | INT-018 | `components/social-section.tsx` | Shockwave archive image fails to load. | Inspect the Shockwave card in the archive; its missing image path produces a broken image. |
 | INT-019 | `components/flavor-carousel.tsx` | Bumblebee carousel item displays Megatron’s image. | Advance to Bumblebee in the featured carousel and compare the displayed image with the name. |
 | INT-020 | `components/lifestyle-section.tsx` | Megatron spotlight heading says Bumblebee. | Scroll to Character Spotlight and compare the heading with the Megatron image and copy. |
 | INT-021 | `components/social-section.tsx` | Join the Community archive CTA is a no-op. | Click the archive’s **Join the Community** CTA and observe that it does not navigate or change state. |
 | INT-022 | `components/lifestyle-section.tsx` | Spotlight CTA uses an inconsistent green color. | Compare **Discover Character** with the purple spotlight theme; the button is bright green. |
 | INT-023 | `components/lifestyle-section.tsx` | Spotlight section forces mobile horizontal overflow. | Open the page at a narrow mobile width and inspect horizontal scrolling caused by the 520px minimum-width grid. |
+| INT-024 | `components/flavor-carousel.tsx:225-226` | Carousel Previous button declares duplicate click handlers and fails TypeScript validation. | Run `pnpm exec tsc --noEmit` and observe `TS17001`. |
 
 ### Recommended Challenge Workflow
 
@@ -216,10 +234,10 @@ The current application contains **21 active intentional bugs**: the original 15
 
 ### Final Count
 
-- Intentional bugs: **21 active; 2 resolved**
-- Pre-existing confirmed issues: **4**
+- Intentional bugs: **22 active; 2 resolved**
+- Pre-existing confirmed issues: **5**
 - Potential pre-existing issues: **2**
-- Total documented issues in this report: **27 active; 2 resolved**
+- Total documented issues in this report: **29 active; 2 resolved**
 
 ## Issues Requiring Browser Testing or Manual Verification
 
