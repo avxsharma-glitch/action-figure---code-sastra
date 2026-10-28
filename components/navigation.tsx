@@ -64,7 +64,7 @@ export function Navigation() {
     { label: "Home", href: "#hero" },
     { label: "Figures", href: "#figures" },
     { label: "Collections", href: "#collections" },
-    { label: "Characters", href: "#characters" },
+    { label: "Characters", href: "#community" },
     { label: "Community", href: "#community" },
   ]
 
@@ -153,6 +153,7 @@ export function Navigation() {
         <motion.button
           className="md:hidden p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Open menu" : "Close menu"}
           whileTap={{ scale: 0.9 }}
         >
           <AnimatePresence mode="wait">

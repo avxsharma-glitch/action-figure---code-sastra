@@ -12,7 +12,7 @@ const archiveFigures = [
   { image: "/images/archive-ironhide.png", name: "Ironhide", faction: "Autobot" },
   { image: "/images/archive-jazz.png", name: "Jazz", faction: "Autobot" },
   { image: "/images/archive-soundwave.png", name: "Soundwave", faction: "Decepticon" },
-  { image: "/images/archive-shockwave.png", name: "Shockwave", faction: "Decepticon" },
+  { image: "/images/archive-shockwave-missing.png", name: "Shockwave", faction: "Decepticon" },
   { image: "/images/archive-grimlock.png", name: "Grimlock", faction: "Autobot" },
   { image: "/images/archive-sideswipe.png", name: "Sideswipe", faction: "Autobot" },
 ]
@@ -65,7 +65,7 @@ export function SocialSection() {
           >
             THE ARCHIVE
           </motion.span>
-          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mt-2 overflow-hidden">
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mt-2 overflow-hidden whitespace-nowrap sm:whitespace-normal">
             <motion.span
               className="inline-block"
               initial={{ y: 100 }}
@@ -108,10 +108,10 @@ export function SocialSection() {
             >
               <div className="relative aspect-square">
                 <Image
-                  src={figure.image}
+                  src={figure.name === "Bumblebee" ? "/images/archive-optimus-prime.png" : figure.image}
                   alt={`${figure.name} ${figure.faction} action figure`}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105 sm:object-contain"
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
               </div>
@@ -134,6 +134,7 @@ export function SocialSection() {
         >
           <motion.a
             href="#community"
+            onClick={(event) => event.preventDefault()}
             className="flex items-center gap-2 bg-[#c1121f] text-white px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

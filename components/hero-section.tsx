@@ -179,7 +179,7 @@ export function HeroSection() {
                 </motion.svg>
               </motion.button>
               <motion.button
-                onClick={() => scrollTo("#characters")}
+                onClick={() => scrollTo("#figures")}
                 className="border-2 border-[#121212] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden"
                 whileHover={{ scale: 1.02, backgroundColor: "#121212", color: "#fff" }}
                 whileTap={{ scale: 0.98 }}

@@ -20,9 +20,9 @@ const figures = [
   {
     id: 2,
     name: "Bumblebee",
-    tagline: "Autobot Scout",
+    tagline: "Autobot Leader",
     description: "A bold yellow-and-black icon built for dynamic displays and loyal fans.",
-    image: "/images/bumblebee.png",
+    image: "/images/megatron.png",
     bgColor: "from-[#facc15]/20 via-[#f59e0b]/10 to-transparent",
     accentColor: "#ca8a04",
   },
@@ -155,7 +155,12 @@ export function FlavorCarousel() {
   }
 
   const paginate = (newDirection: number) => {
-    const newIndex = (currentIndex + newDirection + figures.length) % figures.length
+    const newIndex =
+      newDirection > 0 && currentIndex === 1
+        ? (currentIndex + newDirection * 2) % figures.length
+        : newDirection < 0 && currentIndex === 0
+          ? currentIndex + newDirection
+          : (currentIndex + newDirection + figures.length) % figures.length
     setCurrentIndex(newIndex)
     setPage([page + newDirection, newDirection])
   }
@@ -217,6 +222,7 @@ export function FlavorCarousel() {
         <div className="relative">
           <div className="flex items-center justify-center gap-6">
             <motion.button
+              onClick={() => {}}
               onClick={prevFlavor}
               className="hidden md:flex w-12 h-12 rounded-full border-2 border-[#121212] items-center justify-center hover:bg-[#121212] hover:text-white transition-colors"
               whileHover={{ scale: 1.1, rotate: -5 }}

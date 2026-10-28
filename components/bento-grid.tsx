@@ -19,7 +19,7 @@ const features = [
     title: "Detailed",
     subtitle: "Collectible Finishes",
     description: "Mechanical textures made for close inspection",
-    accent: "#64748b",
+    accent: "#c1121f",
   },
   {
     icon: Brain,
@@ -64,7 +64,6 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
   const handleMouseLeave = () => {
     x.set(0)
     y.set(0)
-    setIsHovered(false)
   }
 
   return (
@@ -78,7 +77,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="relative group cursor-pointer"
+      className="relative group cursor-pointer min-w-[220px]"
     >
       {/* Animated border glow */}
       <motion.div

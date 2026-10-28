@@ -150,6 +150,7 @@ export function ActivationsSection() {
                 </p>
 
                 <motion.button
+                  disabled={activation.title === "Custom Showcases"}
                   className="flex items-center gap-2 text-[#c1121f] group-hover:text-[#121212] font-bold text-xs tracking-wide transition-colors duration-300"
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}

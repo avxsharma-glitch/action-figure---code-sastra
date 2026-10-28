@@ -37,6 +37,7 @@ export function Footer() {
   const isInView = useInView(footerRef, { once: true, margin: "-100px" })
 
   const handleSubmit = () => {
+    if (!email.includes("@")) return
     setIsSubmitting(true)
     setTimeout(() => setIsSubmitting(false), 2000)
   }
@@ -177,6 +178,8 @@ export function Footer() {
                         href={
                           item === "Home"
                             ? "#hero"
+                            : item === "About"
+                              ? "/about-us"
                             : item === "Figures"
                               ? "#figures"
                               : item === "Collections"
@@ -184,7 +187,7 @@ export function Footer() {
                                 : item === "Characters"
                                   ? "#characters"
                                   : item === "Community"
-                                    ? "#community"
+                                    ? "#characters"
                                     : "#contact"
                         }
                         className="text-white/60 hover:text-[#c1121f] font-mono text-xs transition-colors inline-block"
