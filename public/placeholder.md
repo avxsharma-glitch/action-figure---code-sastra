@@ -99,13 +99,8 @@ These defects were deliberately introduced for the controlled bug-hunting challe
 - Actual: The control is disabled and does not respond.
 - Recommended fix: Remove the unintended disabled state and provide the intended action.
 
-### INT-012 | Footer Community link targets Characters | Low
-- Affected file and lines: `components/footer.tsx:170-180`
-- Evidence: The Community branch resolves to `#characters`.
-- Reproduction: Click Community in the footer Company links.
-- Expected: Scroll to `#community`.
-- Actual: Scrolls to `#characters`.
-- Recommended fix: Restore the `#community` target.
+### INT-012 | Footer Community link targets Characters | Low | Resolved
+- Resolution: Removed the dead Community footer link. The footer now retains only the Contact and Terms links.
 
 ### INT-013 | Malformed email containing `@` is accepted | Medium
 - Affected file and line: `components/footer.tsx:35`
@@ -180,7 +175,7 @@ These defects were deliberately introduced for the controlled bug-hunting challe
 
 ## Final Intentional Bug Inventory and Reproduction Guide
 
-The current application contains **23 intentional bugs**: the original 15 plus 8 additional defects. The entries below are the final challenge inventory and describe how to find each one.
+The current application contains **21 active intentional bugs**: the original 15 plus 6 additional defects. Two footer-link issues were resolved by removing the dead links. The entries below are the final challenge inventory and describe how to find each one.
 
 | ID | Location | Bug | How to find it |
 |---|---|---|---|
@@ -195,11 +190,11 @@ The current application contains **23 intentional bugs**: the original 15 plus 8
 | INT-009 | `components/social-section.tsx:76` | Archive heading can be clipped on narrow mobile. | Open the archive below the `sm` breakpoint and inspect the forced single-line heading. |
 | INT-010 | `components/bento-grid.tsx:19` | Detailed card uses the wrong accent color. | Compare the Detailed collection card with its intended slate styling; it uses the red accent instead. |
 | INT-011 | `components/activations-section.tsx:129` | View Showcases CTA is disabled. | Click **View Showcases** in the community section and observe that the control does not respond. |
-| INT-012 | `components/footer.tsx:170-180` | Footer Community link goes to Characters. | In the footer Company links, click **Community** and observe that it scrolls to the archive. |
+| INT-012 | `components/footer.tsx` | Resolved: the dead Community footer link was removed. | Confirm that only Contact and Terms remain in the footer link groups. |
 | INT-013 | `components/footer.tsx:35` | Malformed email containing `@` is accepted. | Enter `name@` in the signup field and click the button; the joining state starts instead of rejecting the address. |
 | INT-014 | `components/navigation.tsx:143` | Mobile menu accessible label is inverted. | Use a screen reader or inspect the accessible name: the closed control says `Close menu`, and the open control says `Open menu`. |
 | INT-015 | `components/bento-grid.tsx:66-69` | Feature-card hover state does not reset. | Hover a collection card, move the pointer away, and observe that hover shine behavior remains active. |
-| INT-016 | `components/footer.tsx` | About footer link opens a nonexistent route. | Click Company > **About**; `/about-us` has no route and displays the 404 page. |
+| INT-016 | `components/footer.tsx` | Resolved: the dead About footer link was removed. | Confirm that only Contact and Terms remain in the footer link groups. |
 | INT-017 | `components/lifestyle-section.tsx` | Character spotlight CTA goes to an unrelated section. | Click **Discover Character** in the spotlight; it targets Collections rather than the related Figures section. |
 | INT-018 | `components/social-section.tsx` | Shockwave archive image fails to load. | Inspect the Shockwave card in the archive; its missing image path produces a broken image. |
 | INT-019 | `components/flavor-carousel.tsx` | Bumblebee carousel item displays Megatron’s image. | Advance to Bumblebee in the featured carousel and compare the displayed image with the name. |
@@ -221,10 +216,10 @@ The current application contains **23 intentional bugs**: the original 15 plus 8
 
 ### Final Count
 
-- Intentional bugs: **23**
+- Intentional bugs: **21 active; 2 resolved**
 - Pre-existing confirmed issues: **4**
 - Potential pre-existing issues: **2**
-- Total documented issues in this report: **29**
+- Total documented issues in this report: **27 active; 2 resolved**
 
 ## Issues Requiring Browser Testing or Manual Verification
 

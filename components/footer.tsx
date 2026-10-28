@@ -44,20 +44,12 @@ export function Footer() {
 
   const footerLinks = [
     {
-      title: "Collections",
-      links: ["Autobots", "Decepticons", "Leader Class", "Collector Editions"],
-    },
-    {
-      title: "Explore",
-      links: ["Home", "Figures", "Collections", "Characters"],
-    },
-    {
       title: "Company",
-      links: ["About", "Community", "Contact", "Characters"],
+      links: ["Contact"],
     },
     {
       title: "Legal",
-      links: ["Privacy Policy", "Terms", "Contact"],
+      links: ["Terms"],
     },
   ]
 
@@ -175,21 +167,7 @@ export function Footer() {
                   <li key={item}>
                     <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                       <Link
-                        href={
-                          item === "Home"
-                            ? "#hero"
-                            : item === "About"
-                              ? "/about-us"
-                            : item === "Figures"
-                              ? "#figures"
-                              : item === "Collections"
-                                ? "#collections"
-                                : item === "Characters"
-                                  ? "#characters"
-                                  : item === "Community"
-                                    ? "#characters"
-                                    : "#contact"
-                        }
+                        href="#contact"
                         className="text-white/60 hover:text-[#c1121f] font-mono text-xs transition-colors inline-block"
                       >
                         {item}
