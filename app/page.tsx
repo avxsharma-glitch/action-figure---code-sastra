@@ -6,6 +6,7 @@ import { ActivationsSection } from "@/components/activations-section"
 import { SocialSection } from "@/components/social-section"
 import { Footer } from "@/components/footer"
 import { LifestyleSection } from "@/components/lifestyle-section"
+import { TreasureHunt } from "@/components/treasure-hunt"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <ActivationsSection />
       <SocialSection />
       <Footer />
+      <TreasureHunt />
     </main>
   )
 }
